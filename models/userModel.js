@@ -25,7 +25,7 @@ const getUserLogin = async (params) => {
         console.log('error', e.message);
     }
 };
-
 module.exports = {
     users,
+    getUserLogin,
 };

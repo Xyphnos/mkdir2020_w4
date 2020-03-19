@@ -2,9 +2,12 @@
 // catRoute
 const express = require('express');
 const multer  = require('multer');
+const passport = require('passport');
 const upload = multer({ dest: 'uploads/' });
 const router = express.Router();
 const catController = require('../controllers/catController.js');
+
+passport.authenticate('jwt', {session: false});
 
 router.get('/list', catController.cat_list_get);
 
