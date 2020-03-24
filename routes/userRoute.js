@@ -11,20 +11,10 @@ router.use(bodyParser.urlencoded({ extended: false }));
 passport.authenticate('jwt', {session: false});
 
 router.get('/list', userController.user_list_get);
+
 router.get('/:id', userController.user_get);
 
-/* GET users listing. */
-router.get('/', (req, res, next) => {
-    res.send('respond with a resource');
-});
-
-/* GET user profile. */
-router.get('/profile', (req, res, next) => {
-    res.send(req.user);
-});
-
 router.post('/', (req, res) => {
-    console.log(req.body);
     res.send('Log successful')
 });
 
@@ -33,13 +23,7 @@ router.put('/', (req, res) => {
 });
 
 router.delete('/', (req, res) => {
-    res.delete(req.params);
     res.send('With this endpoint you can delete users.');
-});
-
-router.get('./models/userModel.js', (req, res) => {
-    console.log('made it');
-    res.send(req.params.filename);
 });
 
 module.exports = router;

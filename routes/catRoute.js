@@ -14,7 +14,7 @@ router.get('/list', catController.cat_list_get);
 router.get('/:id', catController.cat_get);
 
 router.post('/uploads', upload.single('file_name'), (req, res) => {
-    console.log('wat');
+    console.log('test');
     res.send('upload successful');
 });
 
@@ -24,11 +24,6 @@ router.put('/', (req, res) => {
 
 router.delete('/', (req, res) => {
     res.send('With this endpoint you can delete cats.');
-});
-
-router.get('./models/catModel.js', (req, res) => {
-    console.log('made it');
-    res.send(req.params.filename);
 });
 
 module.exports = router;

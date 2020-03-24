@@ -17,7 +17,14 @@ const user_get = (req, res) =>{
     //get cat by id
 };
 
+const user_post = (req, res) => {
+    console.log('data from form', req.body);
+    res.send('With this endpoint you can add users');
+};
+
+
 module.exports = {
     user_list_get,
     user_get,
+    user_post,
 };

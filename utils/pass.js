@@ -8,11 +8,10 @@ const ExtractJWT = passportJWT.ExtractJwt;
 
 // local strategy for username password login
 passport.use(new Strategy(
-    async (username, password, done) => {
-        const params = [username];
+    (username, password, done) => {
         try {
 
-            const [user] = await userModel.getUserLogin(params);
+            const user = userModel.getUserLogin(username);
             console.log('Local strategy', user); // result is binary row
 
             if (user === undefined) {
@@ -32,18 +31,18 @@ passport.use(new Strategy(
 
 passport.use(new JWTStrategy({
         jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken(),
-        secretOrKey   : 'your_jwt_secret'
+        secretOrKey   : 'asdw777'
     },
     (jwtPayload, done) => {
 
-        //find the user in db if needed. This functionality may be omitted if you store everything you'll need in JWT payload.
-        return UserModel.findOneById(jwtPayload.id)
-            .then(user => {
-                return done(null, user);
-            })
-            .catch(err => {
-                return done(err);
-            });
+        const user = userModel.getUser(JwtPayload.id);
+        console.log('pl user', user);
+        if (user){
+            return done(null, user);
+        }
+        else{
+            return done(null, false);
+        }
 }
 ));
 

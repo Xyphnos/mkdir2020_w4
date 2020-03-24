@@ -14,6 +14,16 @@ const users = [
     },
 ];
 
+const getUser = (id) => {
+    const user = users.filter((usr) => {
+        if (usr.id === id) {
+            return usr;
+        }
+    });
+    return user[0];
+};
+
+
 const getUserLogin = async (params) => {
     try {
         console.log(params);
